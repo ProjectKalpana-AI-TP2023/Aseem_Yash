@@ -5,11 +5,11 @@ Done
 // void addText(string text) Appends text to where the cursor is. The cursor ends to the right of text.
 Done
 // void deleteText(int k) Deletes k characters to the left of the cursor.
-
+Done
 // void backspace() Deletes 1 character to the left of the cursor.
-
+Done
 // int findCursor() Returns the index position of the cursor.
-
+Done
 // void cursorLeft(int k) Moves the cursor to the left k times. Equivalent to pressing the left arrow key on a keyboard
 
 // void cursorRight(int k) Moves the cursor to the right k times. Equivalent to pressing the right arrow key on a keyboard.
@@ -63,6 +63,41 @@ public:
     }
 
 
+//Delete 1 Letters from the Left
+
+    void backspace(){                                   //Function call
+        deleteT(1);                                     //??
+    }                                                   
+
+
+//Find cursor
+
+    int findCursor(){                                    //Function call
+        return cursor;                                   //Found cursor
+    }
+
+
+
+//
+    void cursorLeft(int k) {
+        if(k > cursor)
+            cursor = 0;
+        cursor = cursor-k;
+            }
+
+    void cursorRight(int k) {
+        cursor = std::min(cursor + k, static_cast<int>(text.length()));
+    }
+
+    std::string fullText() const {
+        return text;
+    }
+
+    std::string showText(int k) const {
+        int endIndex = std::min(cursor + k, static_cast<int>(text.length()));
+        return text.substr(cursor, endIndex - cursor);
+    }
+};
 
 
 
