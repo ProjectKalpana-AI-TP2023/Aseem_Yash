@@ -11,13 +11,13 @@ Done
 // int findCursor() Returns the index position of the cursor.
 Done
 // void cursorLeft(int k) Moves the cursor to the left k times. Equivalent to pressing the left arrow key on a keyboard
-
+Done
 // void cursorRight(int k) Moves the cursor to the right k times. Equivalent to pressing the right arrow key on a keyboard.
-
+Done
 // string fullText() Returns all the text from the start to the finish.
-
+Done
 // string showText(int k) Returns the next k characters to the right of the cursor.
-
+Done
 
 
 #include <iostream>
@@ -43,9 +43,9 @@ public:
 
 //Insert Text using String Library
   
-    void addT(string& text){                            //Function call
-        this->text.insert(cursor, text);                //Insert at cursor position
-        cursor += text.length();                        //Update cursor value
+    void addT(string& str){                            //Function call
+        this->text.insert(cursor, str);                //Insert at cursor position
+        cursor += str.length();                        //Update cursor value
     }
 
 
@@ -70,7 +70,7 @@ public:
     }                                                   
 
 
-//Find cursor
+//Find Cursor
 
     int findCursor(){                                    //Function call
         return cursor;                                   //Found cursor
@@ -78,24 +78,37 @@ public:
 
 
 
-//
+//Move Cursor to the Left/Right
     void cursorLeft(int k) {
         if(k > cursor)
             cursor = 0;
         cursor = cursor-k;
-            }
-
-    void cursorRight(int k) {
-        cursor = std::min(cursor + k, static_cast<int>(text.length()));
     }
 
-    std::string fullText() const {
+    void cursorRight(int k) {
+        if(k+cursor > text.length())
+            cursor=text.length();
+        cursor=cursor+k;
+   }
+
+
+
+//Display the Full Text
+    string fullText(){
+        cout<<text;
         return text;
     }
 
-    std::string showText(int k) const {
-        int endIndex = std::min(cursor + k, static_cast<int>(text.length()));
-        return text.substr(cursor, endIndex - cursor);
+
+//Display a Partial (k length) Text
+    string showText(int k) {
+
+        if( k+cursor > text.length())                           //Check for exceptional case
+            k = text.length() - cursor;                         //Update value of k with number of chars on the right that CAN be displayed
+
+        cout<<text.substr(cursor, k);
+        return text.substr(cursor, k);
+        
     }
 };
 
