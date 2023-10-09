@@ -10,3 +10,5 @@ Task2 - Spiralling Turtle Node for TurtleSim
 
 Task2 - TennisBall Tracking 
   Tennis
+  ballcap just captures the biggest circles in the frame
+  colorballcap captures all circles, picks the biggest and compares the average color to that of a tennis ball
